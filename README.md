@@ -1,6 +1,6 @@
 # Formulário De Usuários - Reactive Forms - Angular
 
-## Acesse agora a demonstração em deploy na Vercel: [Deploy Vercel](https://formulario-de-usuarios-reactive-forms-oliveiravitor32s-projects.vercel.app/))
+## Acesse agora a demonstração em deploy na Vercel: [Deploy Vercel](https://formulario-de-usuarios-reactive-forms-oliveiravitor32s-projects.vercel.app/)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
