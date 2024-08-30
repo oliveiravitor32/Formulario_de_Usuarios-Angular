@@ -14,7 +14,7 @@
     ></app-user-info-item>
     <app-user-info-item
       title="Documento"
-      [text]="dependent.document"
+      [text]="dependent.document | cpf : true"
     ></app-user-info-item>
   </div>
   <hr class="block sm:hidden" />
