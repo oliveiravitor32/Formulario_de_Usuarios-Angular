@@ -1,0 +1,22 @@
+<div>
+  <p class="text-2xl font-semibold">Dependentes:</p>
+  @if (dependentsList?.length === 0) {
+  <p class="text-lg">O usuário não possui dependentes.</p>
+  } @else { @for (dependent of dependentsList; track $index) {
+  <div class="grid sm:grid-cols-3">
+    <app-user-info-item
+      title="Nome"
+      [text]="dependent.name"
+    ></app-user-info-item>
+    <app-user-info-item
+      title="Idade"
+      [text]="dependent.age"
+    ></app-user-info-item>
+    <app-user-info-item
+      title="Documento"
+      [text]="dependent.document"
+    ></app-user-info-item>
+  </div>
+  <hr class="block sm:hidden" />
+  }}
+</div>

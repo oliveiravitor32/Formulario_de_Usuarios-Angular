@@ -14,9 +14,12 @@
               [user]="usersList[2]"
             ></app-contact-informations>
           </mat-tab>
-          <mat-tab label="Dependente">Dependente</mat-tab>
-        </mat-tab-group>
-      </div></mat-card-content
-    >
+          <mat-tab label="Dependente">
+            <app-dependents-informations
+              [dependentsList]="usersList[2]?.dependentsList"
+            ></app-dependents-informations>
+          </mat-tab>
+        </mat-tab-group></div
+    ></mat-card-content>
   </mat-card>
 </div>
