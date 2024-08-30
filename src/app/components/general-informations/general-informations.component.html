@@ -20,7 +20,9 @@
     ></app-user-info-item>
     <app-user-info-item
       title="Renda mensal"
-      [text]="user?.monthlyIncome"
+      [text]="
+        user?.monthlyIncome | currency : 'BRL' : 'symbol' : '1.2-2' : 'pt-BR'
+      "
     ></app-user-info-item>
     <app-user-info-item
       title="Data de nascimento"

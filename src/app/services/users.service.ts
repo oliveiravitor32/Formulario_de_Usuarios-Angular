@@ -18,7 +18,7 @@ export class UsersService {
       maritalStatus: MaritalStatusEnum.SINGLE, // -> Estado Civil // -> Solteiro
       monthlyIncome: 5000, // -> Renda Mensal
       birthDate: '25/02/1991',
-      phoneList: [
+      phonesList: [
         {
           type: PhoneTypeEnum.RESIDENTIAL,
           areaCode: '11', // -> DDD
@@ -85,7 +85,7 @@ export class UsersService {
       maritalStatus: MaritalStatusEnum.MARRIED, // -> Estado Civil // -> Casada
       monthlyIncome: 6000, // -> Renda Mensal
       birthDate: '12/12/1994',
-      phoneList: [
+      phonesList: [
         {
           type: PhoneTypeEnum.EMERGENCY,
           areaCode: '11', // -> DDD
@@ -119,7 +119,7 @@ export class UsersService {
       maritalStatus: MaritalStatusEnum.DIVORCED, // -> Estado Civil // -> Divorciado
       monthlyIncome: 7000, // -> Renda Mensal
       birthDate: '11/11/1991',
-      phoneList: [
+      phonesList: [
         {
           type: PhoneTypeEnum.MOBILE,
           areaCode: '11', // -> DDD

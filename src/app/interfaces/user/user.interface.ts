@@ -11,7 +11,7 @@ export interface IUser {
   maritalStatus: MaritalStatusEnum;
   monthlyIncome: number;
   birthDate: string;
-  phoneList: PhonesList;
+  phonesList: PhonesList;
   addressList: AddressList;
   dependentsList: DependentsList;
 }

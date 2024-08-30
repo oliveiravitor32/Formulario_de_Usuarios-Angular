@@ -14,7 +14,7 @@ import { UsersListResponse } from './types/users-list-response';
 export class AppComponent implements OnInit {
   usersList: UsersListResponse = [];
 
-  currentTabIndex: number = 0;
+  currentTabIndex: number = 1;
 
   constructor(
     private readonly _countriesService: CountriesService,
