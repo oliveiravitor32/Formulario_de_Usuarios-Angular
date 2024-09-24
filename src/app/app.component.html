@@ -1,25 +1,31 @@
 <div class="max-w-screen-xl mx-auto p-4">
   <mat-card appearance="outlined">
     <mat-card-content>
-      <app-users-list [usersList]="usersList"></app-users-list>
+      <app-users-list
+        [usersList]="usersList"
+        (onUserSelected)="onUserSelected($event)"
+      ></app-users-list>
       <div class="p-4">
+        @if (userSelectedIndex !== undefined) {
         <mat-tab-group [(selectedIndex)]="currentTabIndex">
           <mat-tab label="Geral">
             <app-general-informations
-              [user]="usersList[0]"
+              [user]="userSelected"
             ></app-general-informations>
           </mat-tab>
           <mat-tab label="Contato">
             <app-contact-informations
-              [user]="usersList[2]"
+              [user]="userSelected"
             ></app-contact-informations>
           </mat-tab>
           <mat-tab label="Dependente">
             <app-dependents-informations
-              [dependentsList]="usersList[1]?.dependentsList"
+              [dependentsList]="userSelected.dependentsList"
             ></app-dependents-informations>
           </mat-tab>
-        </mat-tab-group></div
-    ></mat-card-content>
+        </mat-tab-group>
+        }
+      </div></mat-card-content
+    >
   </mat-card>
 </div>
