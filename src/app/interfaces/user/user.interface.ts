@@ -1,7 +1,7 @@
 import { MaritalStatusEnum } from '../../enums/marital-status.enum';
 import { AddressList } from '../../types/address-list';
 import { DependentsList } from '../../types/dependents-list';
-import { PhonesList } from '../../types/phones-list';
+import { PhoneList } from '../../types/phone-list';
 
 export interface IUser {
   name: string;
@@ -11,7 +11,7 @@ export interface IUser {
   maritalStatus: MaritalStatusEnum;
   monthlyIncome: number;
   birthDate: string;
-  phonesList: PhonesList;
+  phonesList: PhoneList;
   addressList: AddressList;
   dependentsList: DependentsList;
 }

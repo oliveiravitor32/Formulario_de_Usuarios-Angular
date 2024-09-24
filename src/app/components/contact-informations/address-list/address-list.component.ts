@@ -17,7 +17,7 @@ export class AddressListComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const ADDRESS_LIST_LOADED = Array.isArray(
-      changes['userAddressList'].currentValue
+      changes['userAddressList']?.currentValue
     );
 
     if (ADDRESS_LIST_LOADED) {

@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PhoneTypeEnum } from '../../../enums/phone-type.enum';
 import { IPhone } from '../../../interfaces/user/phone-interface';
 import { IPhoneToDisplay } from '../../../interfaces/user/phone-to-display.interface';
-import { PhonesList } from '../../../types/phones-list';
+import { PhoneList } from '../../../types/phone-list';
 import { phoneTypeDescriptionMap } from '../../../utils/phone-type-description-map';
 
 @Component({
@@ -11,13 +11,13 @@ import { phoneTypeDescriptionMap } from '../../../utils/phone-type-description-m
   styleUrl: './phone-list.component.scss',
 })
 export class PhoneListComponent implements OnChanges {
-  @Input({ required: true }) userPhoneList: PhonesList | undefined = [];
+  @Input({ required: true }) userPhoneList: PhoneList | undefined = [];
 
   phoneListToDisplay: IPhoneToDisplay[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     const PHONE_LIST_LOAD = Array.isArray(
-      changes['userPhonesList'].currentValue
+      changes['userPhoneList']?.currentValue
     );
 
     if (PHONE_LIST_LOAD) {
