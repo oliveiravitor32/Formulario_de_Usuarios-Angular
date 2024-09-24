@@ -12,6 +12,7 @@ import { GeneralInformationsComponent } from './general-informations/general-inf
 import { UserInfoItemComponent } from './user-info-item/user-info-item.component';
 import { UserInformationsContainerComponent } from './user-informations-container/user-informations-container.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { ContactInformationsEditComponent } from './contact-informations-edit/contact-informations-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UsersListComponent } from './users-list/users-list.component';
     ButtonsContainerComponent,
     UserInformationsContainerComponent,
     GeneralInformationsEditComponent,
+    ContactInformationsEditComponent,
   ],
   imports: [CommonModule, AngularMaterialModule, PipesModule],
   exports: [
