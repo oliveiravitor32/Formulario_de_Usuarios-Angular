@@ -15,6 +15,7 @@ import { UserInfoItemComponent } from './user-info-item/user-info-item.component
 import { UserInformationsContainerComponent } from './user-informations-container/user-informations-container.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { AddressListEditComponent } from './contact-informations-edit/address-list-edit/address-list-edit.component';
+import { DependentsInformationsEditComponent } from './dependents-informations-edit/dependents-informations-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AddressListEditComponent } from './contact-informations-edit/address-li
 
     PhoneListEditComponent,
       AddressListEditComponent,
+      DependentsInformationsEditComponent,
   ],
   imports: [CommonModule, AngularMaterialModule, PipesModule],
   exports: [

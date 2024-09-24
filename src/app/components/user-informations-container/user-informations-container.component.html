@@ -19,8 +19,12 @@
     }
   </mat-tab>
   <mat-tab label="Dependente">
+    @if (isInEditMode) {
     <app-dependents-informations
       [dependentsList]="userSelected.dependentsList"
     ></app-dependents-informations>
+    } @else {
+    <app-dependents-informations-edit></app-dependents-informations-edit>
+    }
   </mat-tab>
 </mat-tab-group>
