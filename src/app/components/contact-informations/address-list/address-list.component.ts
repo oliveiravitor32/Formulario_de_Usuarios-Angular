@@ -26,6 +26,8 @@ export class AddressListComponent implements OnChanges {
   }
 
   prepareAddressListToDisplay() {
+    this.addressListToDisplay = [];
+
     Object.keys(addressTypeDescriptionMap)
       .map(Number)
       .forEach((addressType: number) => {
