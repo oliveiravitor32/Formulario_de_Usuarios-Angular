@@ -6,14 +6,14 @@ import { PhonesList } from '../../../types/phones-list';
 import { phoneTypeDescriptionMap } from '../../../utils/phone-type-description-map';
 
 @Component({
-  selector: 'app-phones-list',
-  templateUrl: './phones-list.component.html',
-  styleUrl: './phones-list.component.scss',
+  selector: 'app-phone-list',
+  templateUrl: './phone-list.component.html',
+  styleUrl: './phone-list.component.scss',
 })
-export class PhonesListComponent implements OnChanges {
-  @Input({ required: true }) userPhonesList: PhonesList | undefined = [];
+export class PhoneListComponent implements OnChanges {
+  @Input({ required: true }) userPhoneList: PhonesList | undefined = [];
 
-  phonesListToDisplay: IPhoneToDisplay[] = [];
+  phoneListToDisplay: IPhoneToDisplay[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     const PHONE_LIST_LOAD = Array.isArray(
@@ -26,16 +26,16 @@ export class PhonesListComponent implements OnChanges {
   }
 
   preparePhoneListToDisplay() {
-    this.phonesListToDisplay = [];
+    this.phoneListToDisplay = [];
 
     Object.keys(phoneTypeDescriptionMap)
       .map(Number)
       .forEach((phoneType: number) => {
-        const phoneFound = this.userPhonesList?.find(
+        const phoneFound = this.userPhoneList?.find(
           (userPhone: IPhone) => userPhone.type === phoneType
         );
 
-        this.phonesListToDisplay.push({
+        this.phoneListToDisplay.push({
           type: phoneTypeDescriptionMap[phoneType as PhoneTypeEnum],
           number: phoneFound ? this.formatPhoneNumber(phoneFound) : '-',
         });
