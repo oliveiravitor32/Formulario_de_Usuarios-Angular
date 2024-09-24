@@ -10,7 +10,6 @@ import { ComponentsModule } from './components/components.module';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { ReactiveFormsModule } from '@angular/forms';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -22,7 +21,6 @@ registerLocaleData(localePt, 'pt-BR');
     AngularMaterialModule,
     ComponentsModule,
     HttpClientModule,
-    ReactiveFormsModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

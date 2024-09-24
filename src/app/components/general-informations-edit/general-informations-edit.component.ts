@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IUser } from '../../interfaces/user/user.interface';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-general-informations-edit',
@@ -7,5 +7,5 @@ import { IUser } from '../../interfaces/user/user.interface';
   styleUrl: './general-informations-edit.component.scss',
 })
 export class GeneralInformationsEditComponent {
-  @Input({ required: true }) user: IUser = {} as IUser;
+  @Input({ required: true }) userForm!: FormGroup;
 }

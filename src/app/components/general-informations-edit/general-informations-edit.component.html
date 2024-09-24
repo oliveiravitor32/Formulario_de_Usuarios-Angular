@@ -1,83 +1,95 @@
-<div class="p-4 grid gap-4">
-  <div class="grid lg:grid-cols-3 gap-4">
-    <mat-form-field class="w-full">
-      <mat-label>Nome</mat-label>
-      <input
-        matInput
-        type="text"
-        placeholder="Ex. Fulano da Silva"
-        value="Fulano"
-      />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Email</mat-label>
-      <input
-        matInput
-        type="email"
-        placeholder="Ex. pat@example.com"
-        value="fulano@example.com"
-      />
-    </mat-form-field>
-  </div>
-  <div class="grid lg:grid-cols-3 gap-4">
-    <mat-form-field class="w-full">
-      <mat-label>País:</mat-label>
-      <input
-        type="text"
-        placeholder="Brazil"
-        matInput
-        [matAutocomplete]="autoCountry"
-      />
-      <mat-autocomplete autoActiveFirstOption #autoCountry="matAutocomplete">
-        @for (option of ["UM", "DOIZI", "TREIZI"]; track option) {
-        <mat-option [value]="option">{{ option }}</mat-option>
-        }
-      </mat-autocomplete>
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Estado:</mat-label>
-      <input
-        type="text"
-        placeholder="São Paulo"
-        matInput
-        [matAutocomplete]="autoState"
-      />
-      <mat-autocomplete autoActiveFirstOption #autoState="matAutocomplete">
-        @for (option of ["estado1", "estadoDoizi", "EstadoTREIZI"]; track
-        option) {
-        <mat-option [value]="option">{{ option }}</mat-option>
-        }
-      </mat-autocomplete>
-    </mat-form-field>
-  </div>
-  <div class="grid lg:grid-cols-3 gap-4">
-    <div class="w-full">
-      <label id="marital-status-radio-group-label" class="text-lg"
-        >Estado Civil:</label
-      >
-      <mat-radio-group
-        aria-labelledby="marital-status-radio-group-label"
-        class="flex flex-col sm:flex-row sm:justify-between"
-      >
-        <mat-radio-button value="1">Option 1</mat-radio-button>
-        <mat-radio-button value="2">Option 2</mat-radio-button>
-        <mat-radio-button value="3">Option 3</mat-radio-button>
-      </mat-radio-group>
+<form class="p-4 grid gap-4" [formGroup]="userForm">
+  <ng-container formGroupName="generalInformations">
+    <div class="grid lg:grid-cols-3 gap-4">
+      <mat-form-field class="w-full">
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. Fulano da Silva"
+          value="Fulano"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Ex. pat@example.com"
+          value="fulano@example.com"
+          formControlName="email"
+        />
+      </mat-form-field>
     </div>
-    <mat-form-field class="w-full">
-      <mat-label>Salário</mat-label>
-      <input matInput type="number" placeholder="Ex. R$5000,00" />
-    </mat-form-field>
+    <div class="grid lg:grid-cols-3 gap-4">
+      <mat-form-field class="w-full">
+        <mat-label>País:</mat-label>
+        <input
+          type="text"
+          placeholder="Brazil"
+          matInput
+          [matAutocomplete]="autoCountry"
+          formControlName="country"
+        />
+        <mat-autocomplete autoActiveFirstOption #autoCountry="matAutocomplete">
+          @for (option of ["UM", "DOIZI", "TREIZI"]; track option) {
+          <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="w-full">
+        <mat-label>Estado:</mat-label>
+        <input
+          type="text"
+          placeholder="São Paulo"
+          matInput
+          [matAutocomplete]="autoState"
+          formControlName="state"
+        />
+        <mat-autocomplete autoActiveFirstOption #autoState="matAutocomplete">
+          @for (option of ["estado1", "estadoDoizi", "EstadoTREIZI"]; track
+          option) {
+          <mat-option [value]="option">{{ option }}</mat-option>
+          }
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div class="grid lg:grid-cols-3 gap-4">
+      <div class="w-full">
+        <label id="marital-status-radio-group-label" class="text-lg"
+          >Estado Civil:</label
+        >
+        <mat-radio-group
+          aria-labelledby="marital-status-radio-group-label"
+          class="flex flex-col sm:flex-row sm:justify-between"
+          formControlName="maritalStatus"
+        >
+          <mat-radio-button [value]="1">Option 1</mat-radio-button>
+          <mat-radio-button [value]="2">Option 2</mat-radio-button>
+          <mat-radio-button [value]="3">Option 3</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <mat-form-field class="w-full">
+        <mat-label>Salário</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Ex. R$5000,00"
+          formControlName="monthlyIncome"
+        />
+      </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Data de nascimento:</mat-label>
-      <input matInput [matDatepicker]="picker" />
-      <mat-hint>DD/MM/AAAA</mat-hint>
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
-</div>
+      <mat-form-field class="w-full">
+        <mat-label>Data de nascimento:</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+        <mat-hint>DD/MM/AAAA</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </ng-container>
+</form>
