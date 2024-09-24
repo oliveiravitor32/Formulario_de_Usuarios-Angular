@@ -5,8 +5,13 @@
         [usersList]="usersList"
         (onUserSelected)="onUserSelected($event)"
       ></app-users-list>
+      @if (userSelectedIndex !== undefined) {
+      <app-buttons-container
+        [isInEditMode]="inInEditMode"
+        (onEditButton)="onEditButton()"
+        (onCancelButton)="onCancelButton()"
+      ></app-buttons-container>
       <div class="p-4">
-        @if (userSelectedIndex !== undefined) {
         <mat-tab-group [(selectedIndex)]="currentTabIndex">
           <mat-tab label="Geral">
             <app-general-informations
@@ -24,8 +29,8 @@
             ></app-dependents-informations>
           </mat-tab>
         </mat-tab-group>
-        }
-      </div></mat-card-content
+      </div>
+      }</mat-card-content
     >
   </mat-card>
 </div>

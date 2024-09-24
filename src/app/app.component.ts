@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   userSelected: IUser = {} as IUser;
 
   currentTabIndex: number = 2;
+  inInEditMode: boolean = false;
 
   constructor(
     private readonly _countriesService: CountriesService,
@@ -26,16 +27,6 @@ export class AppComponent implements OnInit {
     private readonly _citiesService: CitiesService,
     private readonly _usersService: UsersService
   ) {}
-
-  onUserSelected(userSelectedIndex: number) {
-    const userFound = this.usersList[userSelectedIndex];
-
-    if (userFound) {
-      this.userSelectedIndex = userSelectedIndex;
-      this.userSelected = userFound;
-      this.currentTabIndex = 0;
-    }
-  }
 
   ngOnInit(): void {
     // this._countriesService
@@ -60,6 +51,24 @@ export class AppComponent implements OnInit {
       .getUsers()
       .pipe(take(1))
       .subscribe((usersListResponse) => (this.usersList = usersListResponse));
+  }
+
+  onUserSelected(userSelectedIndex: number) {
+    const userFound = this.usersList[userSelectedIndex];
+
+    if (userFound) {
+      this.userSelectedIndex = userSelectedIndex;
+      this.userSelected = userFound;
+      this.currentTabIndex = 0;
+    }
+  }
+
+  onCancelButton() {
+    this.inInEditMode = false;
+  }
+
+  onEditButton() {
+    this.inInEditMode = true;
   }
 
   title = 'Formulario_de_usuarios_Reactive_forms';
