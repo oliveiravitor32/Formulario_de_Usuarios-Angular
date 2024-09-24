@@ -7,6 +7,7 @@ import { AddressListComponent } from './contact-informations/address-list/addres
 import { ContactInformationsComponent } from './contact-informations/contact-informations.component';
 import { PhonesListComponent } from './contact-informations/phones-list/phones-list.component';
 import { DependentsInformationsComponent } from './dependents-informations/dependents-informations.component';
+import { GeneralInformationsEditComponent } from './general-informations-edit/general-informations-edit.component';
 import { GeneralInformationsComponent } from './general-informations/general-informations.component';
 import { UserInfoItemComponent } from './user-info-item/user-info-item.component';
 import { UserInformationsContainerComponent } from './user-informations-container/user-informations-container.component';
@@ -23,13 +24,11 @@ import { UsersListComponent } from './users-list/users-list.component';
     DependentsInformationsComponent,
     ButtonsContainerComponent,
     UserInformationsContainerComponent,
+    GeneralInformationsEditComponent,
   ],
   imports: [CommonModule, AngularMaterialModule, PipesModule],
   exports: [
     UsersListComponent,
-    GeneralInformationsComponent,
-    ContactInformationsComponent,
-    DependentsInformationsComponent,
     ButtonsContainerComponent,
     UserInformationsContainerComponent,
   ],

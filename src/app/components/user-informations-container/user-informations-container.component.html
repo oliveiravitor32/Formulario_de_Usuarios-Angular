@@ -1,6 +1,13 @@
 <mat-tab-group [(selectedIndex)]="currentTabIndex">
   <mat-tab label="Geral">
+    @if(isInEditMode) {
     <app-general-informations [user]="userSelected"></app-general-informations>
+
+    } @else {
+    <app-general-informations-edit
+      [user]="userSelected"
+    ></app-general-informations-edit>
+    }
   </mat-tab>
   <mat-tab label="Contato">
     <app-contact-informations [user]="userSelected"></app-contact-informations>
