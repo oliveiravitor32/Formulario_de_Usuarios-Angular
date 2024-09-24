@@ -18,8 +18,7 @@ export class AppComponent implements OnInit {
   userSelectedIndex: number | undefined;
   userSelected: IUser = {} as IUser;
 
-  currentTabIndex: number = 2;
-  inInEditMode: boolean = false;
+  isInEditMode: boolean = false;
 
   constructor(
     private readonly _countriesService: CountriesService,
@@ -59,16 +58,15 @@ export class AppComponent implements OnInit {
     if (userFound) {
       this.userSelectedIndex = userSelectedIndex;
       this.userSelected = userFound;
-      this.currentTabIndex = 0;
     }
   }
 
   onCancelButton() {
-    this.inInEditMode = false;
+    this.isInEditMode = false;
   }
 
   onEditButton() {
-    this.inInEditMode = true;
+    this.isInEditMode = true;
   }
 
   title = 'Formulario_de_usuarios_Reactive_forms';

@@ -7,29 +7,14 @@
       ></app-users-list>
       @if (userSelectedIndex !== undefined) {
       <app-buttons-container
-        [isInEditMode]="inInEditMode"
+        [isInEditMode]="isInEditMode"
         (onEditButton)="onEditButton()"
         (onCancelButton)="onCancelButton()"
       ></app-buttons-container>
-      <div class="p-4">
-        <mat-tab-group [(selectedIndex)]="currentTabIndex">
-          <mat-tab label="Geral">
-            <app-general-informations
-              [user]="userSelected"
-            ></app-general-informations>
-          </mat-tab>
-          <mat-tab label="Contato">
-            <app-contact-informations
-              [user]="userSelected"
-            ></app-contact-informations>
-          </mat-tab>
-          <mat-tab label="Dependente">
-            <app-dependents-informations
-              [dependentsList]="userSelected.dependentsList"
-            ></app-dependents-informations>
-          </mat-tab>
-        </mat-tab-group>
-      </div>
+      <app-user-informations-container
+        [userSelected]="userSelected"
+        [isInEditMode]="isInEditMode"
+      ></app-user-informations-container>
       }</mat-card-content
     >
   </mat-card>
