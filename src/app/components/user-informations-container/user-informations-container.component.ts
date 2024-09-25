@@ -9,7 +9,9 @@ import {
 import { take } from 'rxjs';
 import { IUser } from '../../interfaces/user/user.interface';
 import { CountriesService } from '../../services/countries.service';
+import { StatesService } from '../../services/states.service';
 import { CountriesList } from '../../types/countries-list';
+import { StatesList } from '../../types/states-list';
 import { UserFormController } from './user-form-controller';
 
 @Component({
@@ -27,8 +29,14 @@ export class UserInformationsContainerComponent
   currentTabIndex: number = 0;
 
   countriesList: CountriesList = [];
+  statesList: StatesList = [];
 
   private readonly _countriesService = inject(CountriesService);
+  private readonly _statesService = inject(StatesService);
+
+  ngOnInit(): void {
+    this.getCountriesList();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const HAS_USER_SELECTED = changes['userSelected']?.currentValue;
@@ -36,11 +44,19 @@ export class UserInformationsContainerComponent
     if (HAS_USER_SELECTED) {
       this.currentTabIndex = 0;
       this.fullFillUserForm(this.userSelected);
+      this.getStatesList(this.userSelected.country);
     }
   }
 
-  ngOnInit(): void {
-    this.getCountriesList();
+  onCountrySelected(countryName: string) {
+    this.getStatesList(countryName);
+  }
+
+  private getStatesList(countryName: string) {
+    this._statesService
+      .getStates(countryName)
+      .pipe(take(1))
+      .subscribe((statesList) => (this.statesList = statesList));
   }
 
   private getCountriesList() {
