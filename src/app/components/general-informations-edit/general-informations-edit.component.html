@@ -10,6 +10,7 @@
           value="Fulano"
           formControlName="name"
         />
+        <mat-error>O Nome é obrigatório.</mat-error>
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Email</mat-label>
@@ -20,6 +21,11 @@
           value="fulano@example.com"
           formControlName="email"
         />
+        @if (emailControl.hasError('required')) {
+        <mat-error>O Email é obrigatório.</mat-error>
+        } @if (emailControl.hasError('pattern')) {
+        <mat-error>O Email é inválido.</mat-error>
+        }
       </mat-form-field>
     </div>
     <div class="grid lg:grid-cols-3 gap-4">
