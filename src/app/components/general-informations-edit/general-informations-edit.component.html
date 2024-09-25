@@ -96,12 +96,19 @@
           thousandSeparator="."
           decimalSeparator=","
         />
+        <mat-error>A Renda Mensal é obrigatória.</mat-error>
       </mat-form-field>
 
       <mat-form-field class="w-full">
         <mat-label>Data de nascimento:</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+        <input
+          matInput
+          readonly
+          [matDatepicker]="picker"
+          formControlName="birthDate"
+        />
         <mat-hint>DD/MM/AAAA</mat-hint>
+        <mat-error>A Data de Nascimento é obrigatória.</mat-error>
         <mat-datepicker-toggle
           matIconSuffix
           [for]="picker"
