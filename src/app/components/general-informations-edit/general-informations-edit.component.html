@@ -74,9 +74,11 @@
           class="flex flex-col sm:flex-row sm:justify-between"
           formControlName="maritalStatus"
         >
-          <mat-radio-button [value]="1">Option 1</mat-radio-button>
-          <mat-radio-button [value]="2">Option 2</mat-radio-button>
-          <mat-radio-button [value]="3">Option 3</mat-radio-button>
+          @for (maritalStatus of maritalStatusArray; track $index) {
+          <mat-radio-button [value]="maritalStatus.code">{{
+            maritalStatus.description
+          }}</mat-radio-button>
+          }
         </mat-radio-group>
       </div>
       <mat-form-field class="w-full">

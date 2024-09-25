@@ -11,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { CountriesList } from '../../types/countries-list';
 import { StatesList } from '../../types/states-list';
+import { maritalStatusArray } from '../../utils/marital-status-description-map';
 
 @Component({
   selector: 'app-general-informations-edit',
@@ -34,6 +35,7 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    // Condicionais para evitar alocação desnecessária de memória em alterações que não impactam todas as propriedades.
     if (changes['countriesList']?.currentValue) {
       this.countriesListFiltered = this.countriesList;
     }
@@ -54,6 +56,10 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
     return this.userForm.get('generalInformations.state') as FormControl;
   }
 
+  get maritalStatusArray() {
+    return maritalStatusArray;
+  }
+
   onCountrySelected(event: MatAutocompleteSelectedEvent) {
     this.onCountrySelectedEmitt.emit(event.option.value);
   }
@@ -64,23 +70,31 @@ export class GeneralInformationsEditComponent implements OnInit, OnChanges {
     );
   }
 
-  private filterCountriesList(searchTerm: string) {
-    this.countriesListFiltered = this.countriesList.filter((country) =>
-      country.name
-        .toLocaleLowerCase()
-        .includes(searchTerm.toLocaleLowerCase().trim())
-    );
+  private filterCountriesList(searchTerm: string | null) {
+    // Condicional para evitar erros de propriedade indefinida do searchTerm
+    // quando o formulário é resetado e retorna null.
+    if (searchTerm) {
+      this.countriesListFiltered = this.countriesList.filter((country) =>
+        country.name
+          .toLocaleLowerCase()
+          .includes(searchTerm.toLocaleLowerCase().trim())
+      );
+    }
   }
 
   private watchStateFormChangesAndFilter() {
     this.stateControl.valueChanges.subscribe(this.filterStatesList.bind(this));
   }
 
-  private filterStatesList(searchTerm: string) {
-    this.statesListFiltered = this.statesList.filter((state) =>
-      state.name
-        .toLocaleLowerCase()
-        .includes(searchTerm.toLocaleLowerCase().trim())
-    );
+  private filterStatesList(searchTerm: string | null) {
+    // Condicional para evitar erros de propriedade indefinida do searchTerm
+    // quando o formulário é resetado e retorna null.
+    if (searchTerm) {
+      this.statesListFiltered = this.statesList.filter((state) =>
+        state.name
+          .toLocaleLowerCase()
+          .includes(searchTerm.toLocaleLowerCase().trim())
+      );
+    }
   }
 }
