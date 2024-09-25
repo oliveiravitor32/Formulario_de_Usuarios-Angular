@@ -82,12 +82,19 @@
         </mat-radio-group>
       </div>
       <mat-form-field class="w-full">
-        <mat-label>Salário</mat-label>
+        <mat-label>Renda Mensal:</mat-label>
+        @if(monthlyIncome.value) {
+        <span matTextPrefix>R$</span>
+        }
         <input
-          matInput
-          type="number"
+          #monthlyIncome
+          type="text"
           placeholder="Ex. R$5000,00"
           formControlName="monthlyIncome"
+          matInput
+          mask="separator.2"
+          thousandSeparator="."
+          decimalSeparator=","
         />
       </mat-form-field>
 
