@@ -28,12 +28,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this._countriesService
-    //   .getCountries()
-    //   .subscribe((countriesResponse) =>
-    //     console.log('countriesResponse', countriesResponse)
-    //   );
-
     // this._statesService
     //   .getStates('Brazil')
     //   .subscribe((statesResponse) =>
