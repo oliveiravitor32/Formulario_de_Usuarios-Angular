@@ -1,10 +1,12 @@
 import { inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PhoneTypeEnum } from '../../enums/phone-type.enum';
 import { IUser } from '../../interfaces/user/user.interface';
 import { AddressList } from '../../types/address-list';
 import { DependentsList } from '../../types/dependents-list';
 import { PhoneList } from '../../types/phone-list';
 import { convertPtBrDateToDateObj } from '../../utils/convert-pt-br-date-to-date-obj';
+import { preparePhoneList } from '../../utils/prepare-phone-list';
 
 export class UserFormController {
   userForm!: FormGroup;
@@ -43,8 +45,6 @@ export class UserFormController {
     this.fullFillAddressList(user.addressList);
 
     this.fullFillDependentsList(user.dependentsList);
-
-    console.log(this.userForm);
   }
 
   private resetUserForm() {
@@ -72,16 +72,20 @@ export class UserFormController {
   }
 
   private fullFillPhoneList(userPhoneList: PhoneList) {
-    userPhoneList.forEach((phone) => {
+    preparePhoneList(userPhoneList, false, (phone) => {
+      const phoneValidators =
+        phone.type === PhoneTypeEnum.EMERGENCY ? [] : [Validators.required];
+
       this.phoneList.push(
         this._fb.group({
-          type: [phone.type, Validators.required],
-          areaCode: [phone.areaCode, Validators.required],
-          internationalCode: [phone.internationalCode, Validators.required],
-          number: [phone.number, Validators.required],
+          type: [phone.type],
+          typeDescription: [phone.typeDescription],
+          number: [phone.number, phoneValidators],
         })
       );
     });
+
+    console.log('phone list', this.phoneList);
   }
 
   private fullFillAddressList(userAddressList: AddressList) {
