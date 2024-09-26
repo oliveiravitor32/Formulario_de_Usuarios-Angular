@@ -6,7 +6,7 @@
         <mat-label>{{ phoneList.value[$index].typeDescription }}</mat-label>
         <input
           matInput
-          placeholder="Ex. +55 11 94444-2222"
+          [placeholder]="phoneList.value[$index].type | phonePlaceholder"
           [mask]="phoneList.value[$index].type | phoneMask"
           formControlName="number"
         />

@@ -2,17 +2,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { PhoneTypeEnum } from '../enums/phone-type.enum';
 
 @Pipe({
-  name: 'phoneMask',
+  name: 'phonePlaceholder',
 })
-export class PhoneMaskPipe implements PipeTransform {
+export class PhonePlaceholderPipe implements PipeTransform {
   transform(phoneType: number): string {
-    console.log('place');
     const phoneMaskMap: { [key in PhoneTypeEnum]: string } = {
-      [PhoneTypeEnum.MOBILE]: '+00 00 00000-0000',
-      [PhoneTypeEnum.RESIDENTIAL]: '+00 00 0000-0000',
-      [PhoneTypeEnum.EMERGENCY]: '+00 00 00000-0000||+00 00 0000-0000',
+      [PhoneTypeEnum.MOBILE]: 'Ex. +55 11 94444-2222',
+      [PhoneTypeEnum.RESIDENTIAL]: 'Ex. +55 11 4002-8922',
+      [PhoneTypeEnum.EMERGENCY]: 'Ex. +55 11 94444-2222 ou +55 11 4002-8922',
     };
-
     return phoneMaskMap[phoneType as PhoneTypeEnum];
   }
 }
