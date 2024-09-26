@@ -10,6 +10,11 @@
           [mask]="phoneList.value[$index].type | phoneMask"
           formControlName="number"
         />
+        @if (phone.get("number")?.hasError("required")) {
+        <mat-error>O Telefone é obrigatório.</mat-error>
+        } @if (phone.get("number")?.hasError("mask")) {
+        <mat-error>O Telefone é inválido.</mat-error>
+        }
       </mat-form-field>
       }
     </ng-container>

@@ -6,11 +6,11 @@ import { PhoneTypeEnum } from '../enums/phone-type.enum';
 })
 export class PhonePlaceholderPipe implements PipeTransform {
   transform(phoneType: number): string {
-    const phoneMaskMap: { [key in PhoneTypeEnum]: string } = {
+    const phonePlaceholderMap: { [key in PhoneTypeEnum]: string } = {
       [PhoneTypeEnum.MOBILE]: 'Ex. +55 11 94444-2222',
       [PhoneTypeEnum.RESIDENTIAL]: 'Ex. +55 11 4002-8922',
       [PhoneTypeEnum.EMERGENCY]: 'Ex. +55 11 94444-2222 ou +55 11 4002-8922',
     };
-    return phoneMaskMap[phoneType as PhoneTypeEnum];
+    return phonePlaceholderMap[phoneType as PhoneTypeEnum];
   }
 }
