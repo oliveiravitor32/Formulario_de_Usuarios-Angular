@@ -1,82 +1,73 @@
-<div>
-  <div class="my-4 grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-6">
-    <mat-form-field class="w-full">
-      <mat-label>Tipo:</mat-label>
-      <input matInput type="text" placeholder="Ex. Residencial" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Rua:</mat-label>
-      <input matInput type="text" placeholder="Ex. Rua de tal" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Complemento:</mat-label>
-      <input matInput type="text" placeholder="Ex. Próximo ao parque" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>País:</mat-label>
-      <input matInput type="text" placeholder="Ex. Brazil" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Estado:</mat-label>
-      <input matInput type="text" placeholder="Ex. São Paulo" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Cidade:</mat-label>
-      <input matInput type="text" placeholder="Ex. São Paulo" />
-    </mat-form-field>
-  </div>
-  <hr class="block lg:hidden" />
-  <div class="my-4 grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-6">
-    <mat-form-field class="w-full">
-      <mat-label>Tipo:</mat-label>
-      <input matInput type="text" placeholder="Ex. Residencial" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Rua:</mat-label>
-      <input matInput type="text" placeholder="Ex. Rua de tal" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Complemento:</mat-label>
-      <input matInput type="text" placeholder="Ex. Próximo ao parque" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>País:</mat-label>
-      <input matInput type="text" placeholder="Ex. Brazil" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Estado:</mat-label>
-      <input matInput type="text" placeholder="Ex. São Paulo" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Cidade:</mat-label>
-      <input matInput type="text" placeholder="Ex. São Paulo" />
-    </mat-form-field>
-  </div>
-  <hr class="block lg:hidden" />
-  <div class="my-4 grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-6">
-    <mat-form-field class="w-full">
-      <mat-label>Tipo:</mat-label>
-      <input matInput type="text" placeholder="Ex. Residencial" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Rua:</mat-label>
-      <input matInput type="text" placeholder="Ex. Rua de tal" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Complemento:</mat-label>
-      <input matInput type="text" placeholder="Ex. Próximo ao parque" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>País:</mat-label>
-      <input matInput type="text" placeholder="Ex. Brazil" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Estado:</mat-label>
-      <input matInput type="text" placeholder="Ex. São Paulo" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Cidade:</mat-label>
-      <input matInput type="text" placeholder="Ex. São Paulo" />
-    </mat-form-field>
-  </div>
-</div>
+<form
+  class="my-4 grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-6"
+  [formGroup]="userForm"
+>
+  <ng-container formGroupName="contactInformations">
+    <ng-container formArrayName="addressList">
+      @for (address of addressList.controls; track address) {
+      <ng-container [formGroupName]="$index">
+        <mat-form-field class="w-full">
+          <mat-label>Tipo:</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. Residencial"
+            formControlName="typeDescription"
+          />
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Rua:</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. Rua de tal"
+            formControlName="street"
+          />
+          <mat-error>A Rua é obrigatória.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Complemento:</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. Próximo ao parque"
+            formControlName="complement"
+          />
+          <mat-error>O Complemento é obrigatório.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>País:</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. Brazil"
+            formControlName="country"
+          />
+          <mat-error>O País é obrigatório.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Estado:</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. São Paulo"
+            formControlName="state"
+          />
+          <mat-error>O Estado é obrigatório.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Cidade:</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. São Paulo"
+            formControlName="city"
+          />
+          <mat-error>A Cidade é obrigatória.</mat-error>
+        </mat-form-field>
+        <hr class="block lg:hidden" />
+      </ng-container>
+      }
+    </ng-container>
+  </ng-container>
+</form>

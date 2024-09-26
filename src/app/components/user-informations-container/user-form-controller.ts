@@ -6,7 +6,9 @@ import { AddressList } from '../../types/address-list';
 import { DependentsList } from '../../types/dependents-list';
 import { PhoneList } from '../../types/phone-list';
 import { convertPtBrDateToDateObj } from '../../utils/convert-pt-br-date-to-date-obj';
+import { prepareAddressList } from '../../utils/prepare-address-list';
 import { preparePhoneList } from '../../utils/prepare-phone-list';
+import { requiredAddressValidator } from '../../utils/user-form-validators/required-address-validator';
 
 export class UserFormController {
   userForm!: FormGroup;
@@ -84,21 +86,25 @@ export class UserFormController {
         })
       );
     });
-
-    console.log('phone list', this.phoneList);
   }
 
   private fullFillAddressList(userAddressList: AddressList) {
-    userAddressList.forEach((address) => {
+    prepareAddressList(userAddressList, false, (address) => {
       this.addressList.push(
-        this._fb.group({
-          type: [address.type, Validators.required],
-          street: [address.street, Validators.required],
-          complement: [address.complement, Validators.required],
-          country: [address.country, Validators.required],
-          state: [address.state, Validators.required],
-          city: [address.city, Validators.required],
-        })
+        this._fb.group(
+          {
+            typeDescription: [
+              { value: address.typeDescription, disabled: true },
+            ],
+            type: [address.type],
+            street: [address.street],
+            complement: [address.complement],
+            country: [address.country],
+            state: [address.state],
+            city: [address.city],
+          },
+          { validators: requiredAddressValidator }
+        )
       );
     });
   }
