@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { IDialogConfirmationData } from './interfaces/dialog-confirmation-data.interface';
 import { IUser } from './interfaces/user/user.interface';
 import { UsersService } from './services/users.service';
 import { UsersListResponse } from './types/users-list-response';
@@ -54,19 +55,12 @@ export class AppComponent implements OnInit {
 
   onCancelButton() {
     if (this.userFormUpdated) {
-      const dialogRef = this._matDialog.open(ConfirmationDialogComponent, {
-        data: {
-          title: 'O Formulário foi alterado',
-          message:
-            'Deseja realmente cancelar as alterações feitas no formulário?',
-        },
-      });
-
-      dialogRef.afterClosed().subscribe((value) => {
-        if (!value) return;
-        this.isInEditMode = false;
-        this.userFormUpdated = false;
-      });
+      const data: IDialogConfirmationData = {
+        title: 'O Formulário foi alterado',
+        message:
+          'Deseja realmente cancelar as alterações feitas no formulário?',
+      };
+      this.createDialog(data);
     } else {
       this.isInEditMode = false;
     }
@@ -75,6 +69,30 @@ export class AppComponent implements OnInit {
   onEditButton() {
     this.isInEditMode = true;
   }
+
+  onSaveButton() {
+    if (this.userFormUpdated) {
+      const data: IDialogConfirmationData = {
+        title: 'Confirmar alteração de dados',
+        message: 'Deseja realmente salvar os valores alterados?',
+      };
+      this.createDialog(data);
+    }
+  }
+
+  private createDialog(data: IDialogConfirmationData) {
+    const dialogRef = this._matDialog.open(ConfirmationDialogComponent, {
+      data,
+    });
+
+    dialogRef.afterClosed().subscribe((value) => {
+      if (!value) return;
+      this.isInEditMode = false;
+      this.userFormUpdated = false;
+    });
+  }
+
+  private saveUserInfos() {}
 
   title = 'Formulario_de_usuarios_Reactive_forms';
 }
