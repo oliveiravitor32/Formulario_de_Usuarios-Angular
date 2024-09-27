@@ -1,93 +1,66 @@
-<div class="p-4">
+<form class="p-4" [formGroup]="userForm">
   <p class="text-xl font-semibold">Dependentes:</p>
   <div>
     <button
       class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-green-600 hover:bg-green-500"
+      (click)="addDependent()"
     >
       Novo Dependente
     </button>
   </div>
-  <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-    <mat-form-field class="w-full">
-      <mat-label>Nome</mat-label>
-      <input
-        matInput
-        type="text"
-        placeholder="Ex. Fulano da Silva"
-        value="Fulano"
-      />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Idade</mat-label>
-      <input matInput type="number" placeholder="Ex. 13" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Documento</mat-label>
-      <input matInput type="text" placeholder="Ex. 1512.151.2151-2" />
-    </mat-form-field>
-    <div class="flex justify-center items-start box-border p-2">
-      <button
-        class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-red-600 hover:bg-red-500"
-      >
-        Remover
-      </button>
-    </div>
-    <hr class="block sm:hidden" />
-  </div>
-  <hr class="block sm:hidden" />
-  <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-    <mat-form-field class="w-full">
-      <mat-label>Nome</mat-label>
-      <input
-        matInput
-        type="text"
-        placeholder="Ex. Fulano da Silva"
-        value="Fulano"
-      />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Idade</mat-label>
-      <input matInput type="number" placeholder="Ex. 13" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Documento</mat-label>
-      <input matInput type="text" placeholder="Ex. 1512.151.2151-2" />
-    </mat-form-field>
-    <div class="flex justify-center items-start box-border p-2">
-      <button
-        class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-red-600 hover:bg-red-500"
-      >
-        Remover
-      </button>
-    </div>
-    <hr class="block sm:hidden" />
-  </div>
-  <hr class="block sm:hidden" />
-  <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-    <mat-form-field class="w-full">
-      <mat-label>Nome</mat-label>
-      <input
-        matInput
-        type="text"
-        placeholder="Ex. Fulano da Silva"
-        value="Fulano"
-      />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Idade</mat-label>
-      <input matInput type="number" placeholder="Ex. 13" />
-    </mat-form-field>
-    <mat-form-field class="w-full">
-      <mat-label>Documento</mat-label>
-      <input matInput type="text" placeholder="Ex. 1512.151.2151-2" />
-    </mat-form-field>
-    <div class="flex justify-center items-start box-border p-2">
-      <button
-        class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-red-600 hover:bg-red-500"
-      >
-        Remover
-      </button>
-    </div>
-    <hr class="block sm:hidden" />
-  </div>
-</div>
+  <ng-container formArrayName="dependentsList">
+    @for (dependent of dependentsList.controls; track dependent) {
+    <ng-container [formGroupName]="$index">
+      <div class="my-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Nome</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. Fulano da Silva"
+            value="Fulano"
+            formControlName="name"
+          />
+          <mat-error>O Nome é obrigatório.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Idade</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Ex. 13"
+            formControlName="age"
+          />
+          <mat-error>A idade é obrigatória.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Documento</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. 1512.151.2151-2"
+            mask="000.000.000-00"
+            placeholder="XXX.XXX.XXX-XX"
+            formControlName="document"
+          />
+          @if(dependent.get("document")?.hasError("required")) {
+          <mat-error>O documento é obrigatório.</mat-error>
+          } @if(dependent.get("document")?.hasError("mask")) {
+          <mat-error>O documento é inválido.</mat-error>
+          }
+        </mat-form-field>
+        <div class="flex justify-center items-start box-border p-2">
+          <button
+            class="rounded-md px-3 py-2 text-lg font-medium leading-5 text-white bg-red-600 hover:bg-red-500"
+            (click)="removeDependent($index)"
+          >
+            Remover
+          </button>
+        </div>
+        <hr class="block sm:hidden" />
+      </div>
+      <hr class="block sm:hidden" />
+    </ng-container>
+    }
+  </ng-container>
+</form>

@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PhoneTypeEnum } from '../../enums/phone-type.enum';
+import { IDependent } from '../../interfaces/user/dependent.interface';
 import { IUser } from '../../interfaces/user/user.interface';
 import { AddressList } from '../../types/address-list';
 import { DependentsList } from '../../types/dependents-list';
@@ -47,6 +48,33 @@ export class UserFormController {
     this.fullFillAddressList(user.addressList);
 
     this.fullFillDependentsList(user.dependentsList);
+  }
+
+  removeDependent(index: number) {
+    this.dependentsList.removeAt(index);
+  }
+
+  addDependent() {
+    this.dependentsList.push(this.createDependentGroup());
+    // Ativa mensagens de erro para os inputs
+    this.dependentsList.controls[
+      this.dependentsList.controls.length - 1
+    ].markAllAsTouched();
+  }
+
+  private createDependentGroup(dependent: IDependent | null = null) {
+    if (dependent === null) {
+      return this._fb.group({
+        name: ['', Validators.required],
+        age: ['', Validators.required],
+        document: ['', Validators.required],
+      });
+    }
+    return this._fb.group({
+      name: [dependent.name, Validators.required],
+      age: [dependent.age, Validators.required],
+      document: [dependent.document, Validators.required],
+    });
   }
 
   private resetUserForm() {
@@ -111,13 +139,7 @@ export class UserFormController {
 
   private fullFillDependentsList(userDependentsList: DependentsList) {
     userDependentsList.forEach((dependent) => {
-      this.dependentsList.push(
-        this._fb.group({
-          name: [dependent.name, Validators.required],
-          age: [dependent.age, Validators.required],
-          document: [dependent.document, Validators.required],
-        })
-      );
+      this.dependentsList.push(this.createDependentGroup(dependent));
     });
   }
 

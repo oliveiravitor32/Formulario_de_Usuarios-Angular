@@ -1,6 +1,6 @@
 <mat-tab-group [(selectedIndex)]="currentTabIndex">
   <mat-tab label="Geral">
-    @if(isInEditMode) {
+    @if(!isInEditMode) {
     <app-general-informations [user]="userSelected"></app-general-informations>
 
     } @else {
@@ -13,7 +13,7 @@
     }
   </mat-tab>
   <mat-tab label="Contato">
-    @if (isInEditMode) {
+    @if (!isInEditMode) {
     <app-contact-informations [user]="userSelected"></app-contact-informations>
     } @else {
     <app-contact-informations-edit
@@ -22,12 +22,16 @@
     }
   </mat-tab>
   <mat-tab label="Dependente">
-    @if (isInEditMode) {
+    @if (!isInEditMode) {
     <app-dependents-informations
       [dependentsList]="userSelected.dependentsList"
     ></app-dependents-informations>
     } @else {
-    <app-dependents-informations-edit></app-dependents-informations-edit>
+    <app-dependents-informations-edit
+      [userForm]="userForm"
+      (onRemoveDependent)="removeDependent($event)"
+      (onAddDependent)="addDependent()"
+    ></app-dependents-informations-edit>
     }
   </mat-tab>
 </mat-tab-group>
