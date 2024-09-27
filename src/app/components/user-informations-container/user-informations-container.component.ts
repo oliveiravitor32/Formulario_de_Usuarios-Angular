@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { distinctUntilChanged, take } from 'rxjs';
+import { distinctUntilChanged, Subscription, take } from 'rxjs';
 import { IUser } from '../../interfaces/user/user.interface';
 import { CountriesService } from '../../services/countries.service';
 import { StatesService } from '../../services/states.service';
@@ -30,11 +30,15 @@ export class UserInformationsContainerComponent
 
   @Output('onFormStatusChange') onFormStatusChangeEmitt =
     new EventEmitter<boolean>();
+  @Output('onUserFormValueChanges') onUserFormValueChangesEmitt =
+    new EventEmitter<void>();
 
   currentTabIndex: number = 0;
 
   countriesList: CountriesList = [];
   statesList: StatesList = [];
+
+  userFormValueChangesSubs!: Subscription;
 
   private readonly _countriesService = inject(CountriesService);
   private readonly _statesService = inject(StatesService);
@@ -48,13 +52,28 @@ export class UserInformationsContainerComponent
     const HAS_USER_SELECTED = changes['userSelected']?.currentValue;
 
     if (HAS_USER_SELECTED) {
+      if (this.userFormValueChangesSubs)
+        this.userFormValueChangesSubs.unsubscribe();
+
       this.currentTabIndex = 0;
       this.fullFillUserForm(this.userSelected);
+
+      this.onUserFormValueChanges();
       this.getStatesList(this.userSelected.country);
     }
   }
 
-  onUserFormStatusChange() {
+  mostrarForm() {
+    console.log(this.userForm);
+  }
+
+  private onUserFormValueChanges() {
+    this.userFormValueChangesSubs = this.userForm.valueChanges.subscribe(() =>
+      this.onUserFormValueChangesEmitt.emit()
+    );
+  }
+
+  private onUserFormStatusChange() {
     this.userForm.statusChanges
       .pipe(distinctUntilChanged())
       .subscribe(() => this.onFormStatusChangeEmitt.emit(this.userForm.valid));

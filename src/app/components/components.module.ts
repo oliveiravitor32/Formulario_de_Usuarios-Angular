@@ -5,6 +5,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { ButtonsContainerComponent } from './buttons-container/buttons-container.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { AddressListEditComponent } from './contact-informations-edit/address-list-edit/address-list-edit.component';
 import { ContactInformationsEditComponent } from './contact-informations-edit/contact-informations-edit.component';
 import { PhoneListEditComponent } from './contact-informations-edit/phone-list-edit/phone-list-edit.component';
@@ -35,6 +36,7 @@ import { UsersListComponent } from './users-list/users-list.component';
     PhoneListEditComponent,
     AddressListEditComponent,
     DependentsInformationsEditComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import { UsersListComponent } from './users-list/users-list.component';
     UsersListComponent,
     ButtonsContainerComponent,
     UserInformationsContainerComponent,
+    ConfirmationDialogComponent,
   ],
   providers: [provideNgxMask()],
 })

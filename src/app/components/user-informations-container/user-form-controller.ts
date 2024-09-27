@@ -73,10 +73,14 @@ export class UserFormController {
 
   removeDependent(index: number) {
     this.dependentsList.removeAt(index);
+    // Marca formulário como sujo para avisar que houve uma alteração
+    this.dependentsList.markAsDirty();
   }
 
   addDependent() {
     this.dependentsList.push(this.createDependentGroup());
+    // Marca formulário como sujo para avisar que houve uma alteração
+    this.dependentsList.markAsDirty();
   }
 
   private createDependentGroup(dependent: IDependent | null = null) {
