@@ -1,5 +1,11 @@
 <mat-tab-group [(selectedIndex)]="currentTabIndex">
   <mat-tab label="Geral">
+    <ng-template mat-tab-label>
+      Geral @if(isInEditMode && !generalInformationsValid) {
+      <mat-icon class="text-xs" color="warn">circle</mat-icon>
+      }
+    </ng-template>
+
     @if(!isInEditMode) {
     <app-general-informations [user]="userSelected"></app-general-informations>
 
@@ -13,6 +19,11 @@
     }
   </mat-tab>
   <mat-tab label="Contato">
+    <ng-template mat-tab-label>
+      Contato @if(isInEditMode && !contactInformationsValid) {
+      <mat-icon class="text-xs" color="warn">circle</mat-icon>
+      }
+    </ng-template>
     @if (!isInEditMode) {
     <app-contact-informations [user]="userSelected"></app-contact-informations>
     } @else {
@@ -22,6 +33,11 @@
     }
   </mat-tab>
   <mat-tab label="Dependente">
+    <ng-template mat-tab-label>
+      Dependente @if(isInEditMode && !dependentsListValid){
+      <mat-icon class="text-xs" color="warn">circle</mat-icon>
+      }
+    </ng-template>
     @if (!isInEditMode) {
     <app-dependents-informations
       [dependentsList]="userSelected.dependentsList"

@@ -7,6 +7,7 @@ import {
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -20,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatAutocompleteModule,
     MatRadioModule,
     MatDatepickerModule,
+    MatIconModule,
   ],
   exports: [
     MatCardModule,
@@ -29,6 +31,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatAutocompleteModule,
     MatRadioModule,
     MatDatepickerModule,
+    MatIconModule,
   ],
   providers: [
     provideNativeDateAdapter(),

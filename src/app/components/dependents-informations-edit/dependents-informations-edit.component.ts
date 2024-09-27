@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dependents-informations-edit',
@@ -11,10 +11,7 @@ export class DependentsInformationsEditComponent {
 
   @Output('onRemoveDependent') onRemoveDependentEmitt =
     new EventEmitter<number>();
-
   @Output('onAddDependent') onAddDependentEmitt = new EventEmitter<void>();
-
-  private _fb = inject(FormBuilder);
 
   get dependentsList(): FormArray {
     return this.userForm.get('dependentsList') as FormArray;

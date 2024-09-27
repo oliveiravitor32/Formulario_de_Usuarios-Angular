@@ -25,6 +25,9 @@ export class UserFormController {
   get generalInformations(): FormGroup {
     return this.userForm.get('generalInformations') as FormGroup;
   }
+  get contactInformations(): FormGroup {
+    return this.userForm.get('contactInformations') as FormGroup;
+  }
 
   get phoneList(): FormArray {
     return this.userForm.get('contactInformations.phoneList') as FormArray;
@@ -38,6 +41,18 @@ export class UserFormController {
     return this.userForm.get('dependentsList') as FormArray;
   }
 
+  get generalInformationsValid(): boolean {
+    return this.generalInformations.valid;
+  }
+
+  get contactInformationsValid(): boolean {
+    return this.contactInformations.valid;
+  }
+
+  get dependentsListValid(): boolean {
+    return this.dependentsList.valid;
+  }
+
   fullFillUserForm(user: IUser) {
     this.resetUserForm();
 
@@ -48,6 +63,12 @@ export class UserFormController {
     this.fullFillAddressList(user.addressList);
 
     this.fullFillDependentsList(user.dependentsList);
+
+    // Atualiza os valores e validadores e marca como touched
+    // para que os erros sejam mostrados sem que seja necessário
+    // uma ação prévia do usuário
+    this.userForm.markAllAsTouched();
+    this.userForm.updateValueAndValidity();
   }
 
   removeDependent(index: number) {
@@ -56,10 +77,6 @@ export class UserFormController {
 
   addDependent() {
     this.dependentsList.push(this.createDependentGroup());
-    // Ativa mensagens de erro para os inputs
-    this.dependentsList.controls[
-      this.dependentsList.controls.length - 1
-    ].markAllAsTouched();
   }
 
   private createDependentGroup(dependent: IDependent | null = null) {
