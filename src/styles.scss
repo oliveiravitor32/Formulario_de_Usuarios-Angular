@@ -12,11 +12,12 @@ body {
   background-color: gray;
 }
 
+.user-selected,
 .user-card-hover:hover {
-  background-color: #9ca3af;
-  cursor: pointer;
-}
-.user-selected {
   background-color: #9ca3af !important;
   cursor: pointer;
+}
+.user-card-disabled {
+  background-color: #d6deeb !important;
+  cursor: not-allowed !important;
 }
