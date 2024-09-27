@@ -1,12 +1,14 @@
 import {
   Component,
+  EventEmitter,
   inject,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
 } from '@angular/core';
-import { take } from 'rxjs';
+import { distinctUntilChanged, take } from 'rxjs';
 import { IUser } from '../../interfaces/user/user.interface';
 import { CountriesService } from '../../services/countries.service';
 import { StatesService } from '../../services/states.service';
@@ -26,6 +28,9 @@ export class UserInformationsContainerComponent
   @Input({ required: true }) userSelected = {} as IUser;
   @Input({ required: true }) isInEditMode: boolean = false;
 
+  @Output('onFormStatusChange') onFormStatusChangeEmitt =
+    new EventEmitter<boolean>();
+
   currentTabIndex: number = 0;
 
   countriesList: CountriesList = [];
@@ -35,6 +40,7 @@ export class UserInformationsContainerComponent
   private readonly _statesService = inject(StatesService);
 
   ngOnInit(): void {
+    this.onUserFormStatusChange();
     this.getCountriesList();
   }
 
@@ -46,6 +52,12 @@ export class UserInformationsContainerComponent
       this.fullFillUserForm(this.userSelected);
       this.getStatesList(this.userSelected.country);
     }
+  }
+
+  onUserFormStatusChange() {
+    this.userForm.statusChanges
+      .pipe(distinctUntilChanged())
+      .subscribe(() => this.onFormStatusChangeEmitt.emit(this.userForm.valid));
   }
 
   onCountrySelected(countryName: string) {

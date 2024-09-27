@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   userSelected: IUser = {} as IUser;
 
   isInEditMode: boolean = false;
+  enableSaveButton: boolean = false;
 
   constructor(
     private readonly _countriesService: CountriesService,
@@ -47,6 +48,12 @@ export class AppComponent implements OnInit {
       this.userSelectedIndex = userSelectedIndex;
       this.userSelected = userFound;
     }
+  }
+
+  onFormStatusChange(formStatus: boolean) {
+    // Solução para exceção ExpressionChangedAfterItHasBeenCheckedError com setTimeOut().
+    // Faz com que a atribuição seja feita de forma assíncrona e não dê conflito com a última checagem de valor do Angular.
+    setTimeout(() => (this.enableSaveButton = formStatus), 0);
   }
 
   onCancelButton() {
