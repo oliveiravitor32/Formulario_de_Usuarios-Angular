@@ -1,33 +1,73 @@
-# Formulário De Usuários - Reactive Forms - Angular
+# Formulário De Usuários com Reactive Forms - Angular
 
-## Acesse agora a demonstração em deploy na Vercel: [Deploy Vercel](https://formulario-de-usuarios-reactive-forms-oliveiravitor32s-projects.vercel.app/)
--
--
--
--
+Este projeto é um formulário de usuários desenvolvido durante o curso [Curso de Angular v2 ao v17: Básico ao Profissional](https://www.udemy.com/course/super-treinamento-de-angular-16-do-basico-ao-avancado/). O autor trouxe para o desenvolvimento uma situação real enfrentada em sua carreira, o que acrescentou um nível extra de desafio ao projeto.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+## Estrutura e Funcionalidades
+O projeto está organizado de forma a facilitar a consulta e edição dos dados de cada usuário. A simulação de uma API fictícia permite que os usuários experimentem um fluxo realista de interação. Além disso, o sistema possui uma formatação cuidadosa que garante tanto a acessibilidade quanto a usabilidade.
 
-## Development server
+## Recursos Destacados
+- Formatação Adequada: Cada campo é formatado de maneira a facilitar o preenchimento e a visualização das informações.
+- Notificações Dinâmicas: Erros são sinalizados em tempo real, oferecendo feedback imediato ao usuário e melhorando a experiência geral.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## 🎯 O que aprendi:
+Este projeto foi uma experiência enriquecedora. Inicialmente, pensei que seria apenas um formulário simples com informações na tela. No entanto, à medida que o desenvolvimento avançava, surgiram desafios inesperados que ampliaram minha perspectiva sobre o desenvolvimento web com Angular.
+Um dos aspectos mais notáveis foi a ênfase do autor na organização e padronização do projeto. Isso me ensinou a importância de não apenas focar em lógicas e funcionalidades, mas também em como o projeto se comportará a longo prazo, facilitando manutenções e a adição de novos recursos.
+Além disso, adquiri lições valiosas sobre a transferência eficiente de dados entre componentes e serviços, bem como sobre a criação de diretivas, pipes e funções utilitárias. Também desenvolvi habilidades em converter e formatar interfaces de maneira otimizada e dinâmica.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Acesse agora a demonstração em deploy na Vercel: [Deploy Vercel](https://formulario-de-usuarios-reactive-forms-oliveiravitor32s-projects.vercel.app/)--
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🔧 Tecnologias Utilizadas
+- Angular: __17.3.8__
+- Tailwindcss
 
-## Running unit tests
+## 🚀 Recursos principais:
+- Consulta de usuários.
+- Edição de usuários.
+- Notificações de erro no formulário para melhor acessibilidade do usuário.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Prévia
+<div style="display: flex, width: 100%">
+    <img src="." width="45%" height="auto" margin="0 auto"/>
+    
+</div>
 
-## Running end-to-end tests
+## 🛠️ Instalação e Execução
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Para rodar o aplicativo localmente, siga os passos abaixo:
 
-## Further help
+### Clone este repositório:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+  git clone https://github.com/oliveiravitor32/Formulario_de_Usuarios_Reactive_Forms-Angular.git
+```
+
+### Frontend
+1. Navegue até a pasta do frontend:
+   ```bash
+   cd frontend
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Inicie o servidor (Obs: É necessário ter o Angular CLI):
+   ```bash
+   ng serve
+   ```
+   Se você não possuir o Angular CLI instalado globalmente use:
+    ```bash
+   npx ng serve
+    ```
+    
+## 📖 Uso
+
+Após iniciar o aplicativo, acesse __http://localhost:4200__ em seu navegador.
+
+<h2 id="license">Licença 📃 </h2>
+
+Este projeto esta sob a licença [MIT](./LICENSE)
+
+## Créditos
+[Felipe da Silva Freitas](https://www.udemy.com/user/felipe-da-silva-freitas/)
