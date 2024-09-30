@@ -12,6 +12,7 @@ import { distinctUntilChanged, Subscription, take } from 'rxjs';
 import { IUser } from '../../interfaces/user/user.interface';
 import { CountriesService } from '../../services/countries.service';
 import { StatesService } from '../../services/states.service';
+import { UserFormRawValueService } from '../../services/user-form-raw-value.service';
 import { CountriesList } from '../../types/countries-list';
 import { StatesList } from '../../types/states-list';
 import { UserFormController } from './user-form-controller';
@@ -42,6 +43,7 @@ export class UserInformationsContainerComponent
 
   private readonly _countriesService = inject(CountriesService);
   private readonly _statesService = inject(StatesService);
+  private readonly _userFormRawValue = inject(UserFormRawValueService);
 
   ngOnInit(): void {
     this.onUserFormStatusChange();
@@ -63,14 +65,12 @@ export class UserInformationsContainerComponent
     }
   }
 
-  mostrarForm() {
-    console.log(this.userForm);
-  }
-
   private onUserFormValueChanges() {
-    this.userFormValueChangesSubs = this.userForm.valueChanges.subscribe(() =>
-      this.onUserFormValueChangesEmitt.emit()
-    );
+    this.userFormValueChangesSubs = this.userForm.valueChanges.subscribe(() => {
+      this.onUserFormValueChangesEmitt.emit();
+      // Atualiza service de user-form-raw-value quando houver mudanças no formulário
+      this._userFormRawValue.setUserFormRawValue(this.userForm);
+    });
   }
 
   private onUserFormStatusChange() {

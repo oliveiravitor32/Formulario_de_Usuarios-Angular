@@ -4,8 +4,11 @@ import { take } from 'rxjs';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { IDialogConfirmationData } from './interfaces/dialog-confirmation-data.interface';
 import { IUser } from './interfaces/user/user.interface';
+import { UpdateUserService } from './services/update-user.service';
+import { UserFormRawValueService } from './services/user-form-raw-value.service';
 import { UsersService } from './services/users.service';
 import { UsersListResponse } from './types/users-list-response';
+import { convertUserFormToUser } from './utils/convert-user-form-to-user';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +16,7 @@ import { UsersListResponse } from './types/users-list-response';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
+  title = 'Formulario_de_usuarios_Reactive_forms';
   usersList: UsersListResponse = [];
 
   userSelectedIndex: number | undefined;
@@ -24,7 +28,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private readonly _usersService: UsersService,
-    private readonly _matDialog: MatDialog
+    private readonly _matDialog: MatDialog,
+    private readonly _updateUserService: UpdateUserService,
+    private readonly _userFormRawValue: UserFormRawValueService
   ) {}
 
   ngOnInit(): void {
@@ -60,13 +66,19 @@ export class AppComponent implements OnInit {
         message:
           'Deseja realmente cancelar as alterações feitas no formulário?',
       };
-      this.createDialog(data);
+
+      this.openConfirmationDialog(data, (value) => {
+        if (!value) return;
+        this.isInEditMode = false;
+        this.userFormUpdated = false;
+      });
     } else {
       this.isInEditMode = false;
     }
   }
 
   onEditButton() {
+    this.userSelected = structuredClone(this.userSelected);
     this.isInEditMode = true;
   }
 
@@ -76,23 +88,38 @@ export class AppComponent implements OnInit {
         title: 'Confirmar alteração de dados',
         message: 'Deseja realmente salvar os valores alterados?',
       };
-      this.createDialog(data);
+      this.openConfirmationDialog(data, (value) => {
+        if (!value) return;
+        this.isInEditMode = false;
+        this.userFormUpdated = false;
+        this.saveUserInfos();
+      });
     }
   }
 
-  private createDialog(data: IDialogConfirmationData) {
+  private openConfirmationDialog(
+    data: IDialogConfirmationData,
+    callback: (value: boolean) => void
+  ) {
     const dialogRef = this._matDialog.open(ConfirmationDialogComponent, {
       data,
     });
 
-    dialogRef.afterClosed().subscribe((value) => {
-      if (!value) return;
-      this.isInEditMode = false;
-      this.userFormUpdated = false;
-    });
+    dialogRef.afterClosed().subscribe(callback);
   }
 
-  private saveUserInfos() {}
+  private saveUserInfos() {
+    const newUser = convertUserFormToUser(
+      this._userFormRawValue.getUserFormRawValue()
+    );
 
-  title = 'Formulario_de_usuarios_Reactive_forms';
+    this._updateUserService
+      .updateUser(newUser)
+      .subscribe((newUserResponse: IUser) => {
+        if (this.userSelectedIndex === undefined) return;
+
+        this.usersList[this.userSelectedIndex] = newUserResponse;
+        this.userSelected = structuredClone(newUserResponse);
+      });
+  }
 }
