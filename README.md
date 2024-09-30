@@ -31,7 +31,7 @@ Além disso, adquiri lições valiosas sobre a transferência eficiente de dados
 <div style="display: flex, width: 100%, flex-wrap: wrap">
     <img src="src/assets/Previa-1.png" width="45%" height="auto"/>
     <img src="src/assets/Previa-2.png" width="45%" height="auto"/>
-    <img src="src/assets/Previa-3.png" width="50%" height="auto"/>
+    <img src="src/assets/Previa-3.png" width="45%" height="auto"/>
     
 </div>
 
