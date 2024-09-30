@@ -29,9 +29,9 @@ Além disso, adquiri lições valiosas sobre a transferência eficiente de dados
 
 ## Prévia
 <div style="display: flex, width: 100%, flex-wrap: wrap">
-    <img src=".src/assets/Previa-1" width="45%" height="auto" margin="0 auto"/>
-    <img src=".src/assets/Previa-2" width="45%" height="auto" margin="0 auto"/>
-    <img src=".src/assets/Previa-3" width="45%" height="auto" margin="0 auto"/>
+    <img src=".src/assets/Previa-1.png" width="45%" height="auto" margin="0 auto"/>
+    <img src=".src/assets/Previa-2.png" width="45%" height="auto" margin="0 auto"/>
+    <img src=".src/assets/Previa-3.png" width="45%" height="auto" margin="0 auto"/>
     
 </div>
 
