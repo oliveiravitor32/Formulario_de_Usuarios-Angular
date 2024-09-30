@@ -1,11 +1,11 @@
 # Formulário De Usuários com Reactive Forms - Angular
 
-Este projeto é um __website de formulário de usuários__ desenvolvido durante o curso [Curso de Angular v2 ao v17: Básico ao Profissional](https://www.udemy.com/course/super-treinamento-de-angular-16-do-basico-ao-avancado/). 
-O projeto está organizado de forma a facilitar a consulta e edição dos dados de cada usuário. 
+ Este projeto é um __website de formulário de usuários__ desenvolvido durante o curso [Curso de Angular v2 ao v17: Básico ao Profissional](https://www.udemy.com/course/super-treinamento-de-angular-16-do-basico-ao-avancado/). 
+O projeto está __organizado de forma a facilitar a consulta e edição dos dados de cada usuário__. 
 </br>
-A __simulação de uma API fictícia permite que os usuários experimentem um fluxo realista de interação__. Utilizamos também a __API [Postman Countries & Cities API](https://documenter.getpostman.com/view/1134062/T1LJjU52) para gerar dados de preenchimento automático de país e estado__, tornando o processo mais eficiente. 
+ A __simulação de uma API fictícia permite que os usuários experimentem um fluxo realista de interação__. Utilizamos também a __API [Postman Countries & Cities API](https://documenter.getpostman.com/view/1134062/T1LJjU52) para gerar dados de preenchimento automático de país e estado__, tornando o processo mais eficiente. 
 </br>
-O sistema possui uma formatação cuidadosa que garante tanto a acessibilidade quanto a usabilidade. Além disso o autor trouxe para o desenvolvimento uma situação real enfrentada em sua carreira, acrescentando um nível extra de desafio ao projeto e enriquecendo a experiência de aprendizado.
+ O sistema possui uma formatação cuidadosa que garante tanto a acessibilidade quanto a usabilidade. Além disso o autor trouxe para o desenvolvimento uma situação real enfrentada em sua carreira, acrescentando um nível extra de desafio ao projeto e enriquecendo a experiência de aprendizado.
 
 ## Prévia
 <div style="display: flex, width: 100%, flex-wrap: wrap">
