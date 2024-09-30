@@ -44,7 +44,7 @@ Para rodar o aplicativo localmente, siga os passos abaixo:
 ### Frontend
 1. Navegue até a pasta do frontend:
    ```bash
-   cd frontend
+   cd Formulario_de_Usuarios_Reactive_Forms-Angular
    ```
 2. Instale as dependências:
    ```bash
