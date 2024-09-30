@@ -31,7 +31,11 @@
             placeholder="Ex. 13"
             formControlName="age"
           />
+          @if(dependent.get("age")?.hasError("required")) {
           <mat-error>A idade é obrigatória.</mat-error>
+          } @if(dependent.get("age")?.hasError("pattern")) {
+          <mat-error>A idade é inválida.</mat-error>
+          }
         </mat-form-field>
         <mat-form-field class="w-full">
           <mat-label>Documento</mat-label>
