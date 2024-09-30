@@ -17,7 +17,7 @@ Um dos aspectos mais notáveis foi a ênfase do autor na organização e padroni
 Além disso, adquiri lições valiosas sobre a transferência eficiente de dados entre componentes e serviços, bem como sobre a criação de diretivas, pipes e funções utilitárias. Também desenvolvi habilidades em converter e formatar interfaces de maneira otimizada e dinâmica.
 
 
-## Acesse agora a demonstração em deploy na Vercel: [Deploy Vercel](https://formulario-de-usuarios-reactive-forms-oliveiravitor32s-projects.vercel.app/)--
+## Acesse agora a demonstração em deploy na Vercel: [Deploy Vercel](https://formulario-de-usuarios-reactive-forms-oliveiravitor32s-projects.vercel.app/)
 
 ## 🔧 Tecnologias Utilizadas
 - Angular: __17.3.8__
